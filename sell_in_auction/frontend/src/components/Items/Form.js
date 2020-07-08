@@ -22,7 +22,7 @@ export class Form extends Component {
 
   handleImageChange = (e) => {
     this.setState({
-      "picture": e.target.files[0],
+      picture: e.target.files[0],
     });
   };
 
@@ -36,6 +36,14 @@ export class Form extends Component {
     form_data.append("owner", this.state.owner);
     form_data.append("winner", this.state.winner);
     this.props.addItem(form_data);
+    this.setState({
+      name: "",
+      picture: null,
+      current_bid: "",
+      bid_time: "",
+      owner: "",
+      winner: "",
+    });
   };
 
   render() {
