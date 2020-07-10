@@ -10,7 +10,7 @@ export class Form extends Component {
     picture: null,
     current_bid: "",
     bid_time: "",
-    owner: "",
+    // owner: "",
     winner: "",
   };
 
@@ -33,7 +33,7 @@ export class Form extends Component {
     form_data.append("name", this.state.name);
     form_data.append("current_bid", this.state.current_bid);
     form_data.append("bid_time", this.state.bid_time);
-    form_data.append("owner", this.state.owner);
+    // form_data.append("owner", this.state.owner);
     form_data.append("winner", this.state.winner);
     this.props.addItem(form_data);
     this.setState({
@@ -41,13 +41,13 @@ export class Form extends Component {
       picture: null,
       current_bid: "",
       bid_time: "",
-      owner: "",
+      // owner: "",
       winner: "",
     });
   };
 
   render() {
-    const { name, picture, current_bid, bid_time, owner, winner } = this.state;
+    const { name, picture, current_bid, bid_time, winner } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
         <h2>Add Item for Auction</h2>
@@ -92,7 +92,7 @@ export class Form extends Component {
               value={bid_time}
             />
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>Owner</label>
             <input
               className="form-control"
@@ -101,7 +101,7 @@ export class Form extends Component {
               onChange={this.onChange}
               value={owner}
             />
-          </div>
+          </div> */}
           <div className="form-group">
             <label>Winner</label>
             <input

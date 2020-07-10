@@ -9,7 +9,7 @@ class AuctionItems(models.Model):
     current_bid = models.DecimalField(max_digits=7, decimal_places=2)
     date_posted = models.DateTimeField(auto_now_add=True)
     bid_time = models.TimeField(blank=True, null=True)
-    owner = models.ForeignKey(User, related_name="items", on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, related_name="items", on_delete=models.CASCADE, null=True)
     winner = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):

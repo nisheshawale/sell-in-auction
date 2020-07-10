@@ -33,6 +33,12 @@ export class Alerts extends Component {
       if (error.msg.winner) {
         alert.error(`Winner: ${error.msg.winner.join()}`);
       }
+      if (error.msg.username) {
+        alert.error(error.msg.username);
+      }
+      if (error.msg.non_field_errors) {
+        alert.error(error.msg.non_field_errors.join());
+      }
     }
     if (message !== prevProps.message) {
       if (message.deleteItem) {
@@ -40,6 +46,9 @@ export class Alerts extends Component {
       }
       if (message.addItem) {
         alert.success(message.addItem);
+      }
+      if (message.passwordNotMatch) {
+        alert.error(message.passwordNotMatch);
       }
     }
   }

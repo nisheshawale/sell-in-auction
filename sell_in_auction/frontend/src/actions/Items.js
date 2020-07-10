@@ -1,11 +1,12 @@
 import axios from "axios";
 import { createMessage, getErrors } from "./messages";
+import { tokenConfig } from './auth';
 
 import { GET_ITEMS, DELETE_ITEM, ADD_ITEM } from "./types";
 
-export const getItems = () => (dispatch) => {
+export const getItems = () => (dispatch, getState) => {
   axios
-    .get("/api/auction/")
+    .get("/api/auction/", tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_ITEMS,
@@ -15,9 +16,9 @@ export const getItems = () => (dispatch) => {
     .catch((err) => dispatch(getErrors(err.response.data, err.response.status)));
 };
 
-export const deleteItem = (id) => (dispatch) => {
+export const deleteItem = (id) => (dispatch, getState) => {
   axios
-    .delete(`/api/auction/${id}/`)
+    .delete(`/api/auction/${id}/`, tokenConfig(getState))
     .then((res) => {
       dispatch(createMessage({ deleteItem: 'Item Deleted' }));
       dispatch({
@@ -28,9 +29,9 @@ export const deleteItem = (id) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const addItem = (form_data) => (dispatch) => {
+export const addItem = (form_data) => (dispatch, getState) => {
   axios
-    .post("/api/auction/", form_data)
+    .post("/api/auction/", form_data, tokenConfig(getState))
     .then((res) => {
       dispatch(createMessage({ addItem: 'Item Added' }));
       dispatch({
