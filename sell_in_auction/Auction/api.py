@@ -18,3 +18,14 @@ class AuctionItemsViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+class AuctionItemsViewSetAll(viewsets.ModelViewSet):
+    #parser_classes = (MultiPartParser, FormParser)
+
+    queryset = AuctionItems.objects.all()
+    serializer_class = AuctionItemsSerializer
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+

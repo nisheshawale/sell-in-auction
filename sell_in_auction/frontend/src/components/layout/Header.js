@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {logout} from "../../actions/auth";
+import { logout } from "../../actions/auth";
 
 export class Header extends Component {
   static propTypes = {
@@ -15,7 +15,7 @@ export class Header extends Component {
     const authLinks = (
       <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
         <span className="navbar-text mr-3">
-          <strong>{ user ? `Welcome ${user.username }`:'' }</strong>
+          <strong>{user ? `Welcome ${user.username}` : ""}</strong>
         </span>
         <li className="nav-item">
           <button
@@ -44,8 +44,8 @@ export class Header extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container">
+      <div className="container">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <button
             className="navbar-toggler"
             type="button"
@@ -77,10 +77,28 @@ export class Header extends Component {
               </button>
             </form>
 
+            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li className="nav-item">
+                <Link to="/" className="nav-link">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/specificItems" className="nav-link">
+                  My Items
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/form" className="nav-link">
+                  Create Auction
+                </Link>
+              </li>
+            </ul>
+
             {isAuthenticated ? authLinks : guestLinks}
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     );
   }
 }

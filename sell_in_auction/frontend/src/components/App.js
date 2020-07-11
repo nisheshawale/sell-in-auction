@@ -15,11 +15,14 @@ import Dashboard from "./Items/Dashboard";
 import Alerts from "./layout/Alerts";
 import Register from "./accounts/Register";
 import Login from "./accounts/Login";
+import Form from "./Items/Form";
+import SpecificItems from "./Items/SpecificItems";
 import PrivateRoute from "./common/PrivateRoute";
 import { loadUser } from "../actions/auth";
 
 import { Provider } from "react-redux";
 import store from "../store";
+
 
 const alertOptions = {
   timeout: 3000,
@@ -44,6 +47,8 @@ class App extends Component {
                   <PrivateRoute exact path="/" component={Dashboard} />
                   <Route exact path="/register" component={Register} />
                   <Route exact path="/login" component={Login} />
+                  <PrivateRoute exact path="/form" component={Form} />
+                  <PrivateRoute exact path="/specificItems" component={SpecificItems} />
                 </Switch>
               </div>
             </Fragment>
