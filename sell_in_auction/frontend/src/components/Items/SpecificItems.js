@@ -6,6 +6,7 @@ import { getItems, deleteItem } from "../../actions/Items";
 export class SpecificItems extends Component {
   static propTypes = {
     Items: PropTypes.array.isRequired,
+    value: PropTypes.string.isRequired,
     getItems: PropTypes.func.isRequired,
     deleteItem: PropTypes.func.isRequired,
   };
@@ -16,6 +17,8 @@ export class SpecificItems extends Component {
   }
 
   render() {
+    const selectedItems = this.props.Items.filter((val) => val.name.toLowerCase().includes(this.props.value.toLowerCase()));
+
     return (
       <Fragment>
         <h2>Items</h2>
@@ -34,7 +37,7 @@ export class SpecificItems extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.Items.map((item) => (
+            {selectedItems.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
@@ -65,6 +68,7 @@ export class SpecificItems extends Component {
 
 const mapStateToProps = (state) => ({
   Items: state.Items.Items,
+  value: state.search.value
 });
 
 export default connect(mapStateToProps, { getItems, deleteItem })(SpecificItems);
