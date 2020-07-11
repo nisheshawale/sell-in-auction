@@ -1,4 +1,4 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, filters, generics
 from .serializers import AuctionItemsSerializer
 from .models import AuctionItems
 
@@ -28,4 +28,17 @@ class AuctionItemsViewSetAll(viewsets.ModelViewSet):
     permission_classes = [
         permissions.IsAuthenticated
     ]
+
+    
+
+
+# class AuctionItemsListView(generics.ListAPIView):
+#     queryset = AuctionItems.objects.all()
+#     serializer_class = AuctionItemsSerializer
+#     permission_classes = [
+#         permissions.IsAuthenticated
+#     ]
+#     filter_backends = [filters.SearchFilter]
+#     search_fields = ['name',]
+    
 

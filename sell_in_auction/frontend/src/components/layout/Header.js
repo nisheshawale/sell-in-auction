@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
+// import { getItems } from "../../actions/Items";
+import { search } from '../../actions/search';
 
 export class Header extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    logout: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired, 
+    search: PropTypes.func.isRequired
   };
 
   render() {
@@ -64,17 +67,14 @@ export class Header extends Component {
 
             <form className="form-inline my-2 my-lg-0">
               <input
+                onChange={(e) => this.props.search(e.target.value)}
                 className="form-control mr-sm-2"
+                name="search"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                value={this.props.value}
               />
-              <button
-                className="btn btn-outline-success my-2 my-sm-0"
-                type="submit"
-              >
-                Search
-              </button>
             </form>
 
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -105,6 +105,7 @@ export class Header extends Component {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  value: state.search.value
 });
 
-export default connect(mapStateToProps, { logout })(Header);
+export default connect(mapStateToProps, { logout, search })(Header);

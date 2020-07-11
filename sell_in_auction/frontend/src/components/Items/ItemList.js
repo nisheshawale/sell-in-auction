@@ -6,6 +6,7 @@ import { getItems } from "../../actions/Items";
 export class ItemList extends Component {
   static propTypes = {
     Items: PropTypes.array.isRequired,
+    value: PropTypes.string.isRequired,
     getItems: PropTypes.func.isRequired,
     // deleteItem: PropTypes.func.isRequired,
   };
@@ -13,9 +14,13 @@ export class ItemList extends Component {
   componentDidMount() {
     const all = true;
     this.props.getItems(all);
+    // this.props.setSearch('');
   }
 
+
   render() {
+    const selectedItems = this.props.Items.filter((val) => val.name.toLowerCase().includes(this.props.value.toLowerCase()));
+
     return (
       <Fragment>
         <h2>Items</h2>
@@ -29,7 +34,7 @@ export class ItemList extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.Items.map((item) => (
+            {selectedItems.map((item) => (
               <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>
@@ -48,6 +53,7 @@ export class ItemList extends Component {
 
 const mapStateToProps = (state) => ({
   Items: state.Items.Items,
+  value: state.search.value
 });
 
 export default connect(mapStateToProps, { getItems })(ItemList);

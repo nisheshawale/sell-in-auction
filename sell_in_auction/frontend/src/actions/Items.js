@@ -9,6 +9,7 @@ export const getItems = (all) => (dispatch, getState) => {
   if (all) {
     url = "/api/auction/all/";
   }
+  
   axios
     .get(url, tokenConfig(getState))
     .then((res) => {
