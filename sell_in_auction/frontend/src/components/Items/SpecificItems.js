@@ -33,6 +33,7 @@ export class SpecificItems extends Component {
               <th>Date Posted</th>
               <th>Maximum Bidding Time</th>
               <th>Winner</th>
+              <th>Contact</th>
               <th />
             </tr>
           </thead>
@@ -49,6 +50,7 @@ export class SpecificItems extends Component {
                 <td>{item.date_posted}</td>
                 <td>{item.bid_time}</td>
                 <td>{item.winner}</td>
+                <td>{item.contact}</td>
                 <td>
                   <button
                     onClick={this.props.deleteItem.bind(this, item.id)}

@@ -5,21 +5,27 @@ import PropTypes from "prop-types";
 
 export class Details extends Component {
   state = {
-    data: "",
+    current_bid: "",
+    contact: "",
   };
 
   static propTypes = {
     Items: PropTypes.array.isRequired,
     updateItem: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
   };
 
   onChange = (e) => {
-    this.setState({ data: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   onSubmit = (ID, e) => {
     e.preventDefault();
-    const updatedData = { "current_bid": this.state.data };
+    const updatedData = {
+      current_bid: this.state.current_bid,
+      contact: this.state.contact,
+      winner: this.props.auth.user.username
+    };
     console.log(ID);
     console.log(updatedData);
     this.props.updateItem(updatedData, ID);
@@ -42,7 +48,7 @@ export class Details extends Component {
               <p className="card-text">
                 Current Bid: {selectedItem.current_bid}
               </p>
-              <form onSubmit={this.onSubmit.bind(this,id)}>
+              <form onSubmit={this.onSubmit.bind(this, id)}>
                 <div className="form-group">
                   <input
                     onChange={this.onChange}
@@ -50,7 +56,17 @@ export class Details extends Component {
                     name="current_bid"
                     type="text"
                     placeholder="Make a bid"
-                    value={this.state.data}
+                    value={this.state.current_bid}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    onChange={this.onChange}
+                    className="form-control"
+                    name="contact"
+                    type="text"
+                    placeholder="Contact"
+                    value={this.state.contact}
                   />
                 </div>
                 <div className="form-group">
@@ -72,6 +88,7 @@ export class Details extends Component {
 
 const mapStateToProps = (state) => ({
   Items: state.Items.Items,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { updateItem })(Details);

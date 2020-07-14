@@ -11,6 +11,7 @@ class AuctionItems(models.Model):
     bid_time = models.TimeField(blank=True, null=True)
     owner = models.ForeignKey(User, related_name="items", on_delete=models.CASCADE, null=True)
     winner = models.CharField(max_length=50, blank=True, null=True)
+    contact = models.CharField(max_length=10, blank=True, null=True)
 
     def __str__(self):
         return self.name
