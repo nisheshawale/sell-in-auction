@@ -17,6 +17,7 @@ import Register from "./accounts/Register";
 import Login from "./accounts/Login";
 import Form from "./Items/Form";
 import SpecificItems from "./Items/SpecificItems";
+import Details from './Items/Details';
 import PrivateRoute from "./common/PrivateRoute";
 import { loadUser } from "../actions/auth";
 
@@ -49,6 +50,7 @@ class App extends Component {
                   <Route exact path="/login" component={Login} />
                   <PrivateRoute exact path="/form" component={Form} />
                   <PrivateRoute exact path="/specificItems" component={SpecificItems} />
+                  <PrivateRoute exact path="/details/:id" component={Details} />
                 </Switch>
               </div>
             </Fragment>

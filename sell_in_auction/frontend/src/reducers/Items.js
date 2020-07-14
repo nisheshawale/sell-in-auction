@@ -1,4 +1,9 @@
-import { GET_ITEMS, DELETE_ITEM, ADD_ITEM } from "../actions/types";
+import {
+  GET_ITEMS,
+  DELETE_ITEM,
+  ADD_ITEM,
+  UPDATE_ITEM,
+} from "../actions/types";
 
 const initialState = {
   Items: [],
@@ -14,13 +19,21 @@ export default function (state = initialState, action) {
     case DELETE_ITEM:
       return {
         ...state,
-        Items: state.Items.filter(item => item.id !== action.payload)  
-      }
+        Items: state.Items.filter((item) => item.id !== action.payload),
+      };
+    case UPDATE_ITEM:
+      return {
+        ...state,
+        Items: [
+          ...state.Items.filter((item) => item.id !== action.payload.id),
+          action.payload,
+        ],
+      };
     case ADD_ITEM:
       return {
         ...state,
-        Items: [...state.Items, action.payload]
-      }
+        Items: [...state.Items, action.payload],
+      };
     default:
       return state;
   }

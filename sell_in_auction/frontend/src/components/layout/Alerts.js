@@ -50,6 +50,9 @@ export class Alerts extends Component {
       if (message.passwordNotMatch) {
         alert.error(message.passwordNotMatch);
       }
+      if (message.makebid) {
+        alert.success(message.makebid);
+      }
     }
   }
 

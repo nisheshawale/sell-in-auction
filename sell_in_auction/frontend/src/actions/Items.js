@@ -2,14 +2,14 @@ import axios from "axios";
 import { createMessage, getErrors } from "./messages";
 import { tokenConfig } from "./auth";
 
-import { GET_ITEMS, DELETE_ITEM, ADD_ITEM } from "./types";
+import { GET_ITEMS, DELETE_ITEM, ADD_ITEM, UPDATE_ITEM } from "./types";
 
 export const getItems = (all) => (dispatch, getState) => {
   let url = "/api/auction/";
   if (all) {
     url = "/api/auction/all/";
   }
-  
+
   axios
     .get(url, tokenConfig(getState))
     .then((res) => {
@@ -34,6 +34,21 @@ export const deleteItem = (id) => (dispatch, getState) => {
       });
     })
     .catch((err) => console.log(err));
+};
+
+export const updateItem = (data, id) => (dispatch, getState) => {
+  axios
+    .patch(`/api/auction/all/${id}/`, data, tokenConfig(getState))
+    .then((res) => {
+      dispatch(createMessage({ makebid: "Bid made" }));
+      dispatch({
+        type: UPDATE_ITEM,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(getErrors(err.response.data, err.response.status))
+    );
 };
 
 export const addItem = (form_data) => (dispatch, getState) => {
