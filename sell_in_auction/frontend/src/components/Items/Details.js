@@ -1,34 +1,44 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateItem } from "../../actions/Items";
+import { createMessage } from '../../actions/messages';
 import PropTypes from "prop-types";
 
 export class Details extends Component {
   state = {
     current_bid: "",
-    contact: "",
+    contact: ""
   };
 
   static propTypes = {
     Items: PropTypes.array.isRequired,
     updateItem: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
   };
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = (ID, e) => {
+  onSubmit = (ID, selectedItem, e) => {
     e.preventDefault();
     const updatedData = {
       current_bid: this.state.current_bid,
       contact: this.state.contact,
-      winner: this.props.auth.user.username
+      winner: this.props.auth.user.username,
     };
-    console.log(ID);
-    console.log(updatedData);
-    this.props.updateItem(updatedData, ID);
+  
+    if(this.state.current_bid > selectedItem.current_bid) {
+      this.props.updateItem(updatedData, ID);
+    }
+    else{
+      this.props.createMessage({ bidNotEnough: "Bid made should be greater than current bid." })
+    }
+    
+    this.setState({
+      current_bid: "",
+      contact: "",
+    });
   };
 
   render() {
@@ -48,7 +58,7 @@ export class Details extends Component {
               <p className="card-text">
                 Current Bid: {selectedItem.current_bid}
               </p>
-              <form onSubmit={this.onSubmit.bind(this, id)}>
+              <form onSubmit={this.onSubmit.bind(this, id, selectedItem)}>
                 <div className="form-group">
                   <input
                     onChange={this.onChange}
@@ -88,7 +98,7 @@ export class Details extends Component {
 
 const mapStateToProps = (state) => ({
   Items: state.Items.Items,
-  auth: state.auth
+  auth: state.auth,
 });
 
-export default connect(mapStateToProps, { updateItem })(Details);
+export default connect(mapStateToProps, { updateItem, createMessage })(Details);

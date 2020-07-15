@@ -8,6 +8,7 @@ export class Form extends Component {
   state = {
     name: "",
     picture: null,
+    description: "",
     current_bid: "",
     bid_time: "",
     // owner: "",
@@ -31,6 +32,7 @@ export class Form extends Component {
     let form_data = new FormData();
     form_data.append("picture", this.state.picture);
     form_data.append("name", this.state.name);
+    form_data.append("description", this.state.description);
     form_data.append("current_bid", this.state.current_bid);
     form_data.append("bid_time", this.state.bid_time);
     // form_data.append("owner", this.state.owner);
@@ -39,6 +41,7 @@ export class Form extends Component {
     this.setState({
       name: "",
       picture: null,
+      description: "",
       current_bid: "",
       bid_time: "",
       // owner: "",
@@ -47,7 +50,7 @@ export class Form extends Component {
   };
 
   render() {
-    const { name, picture, current_bid, bid_time, winner } = this.state;
+    const { name, picture, description, current_bid, bid_time, winner } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
         <h2>Add Item for Auction</h2>
@@ -66,10 +69,20 @@ export class Form extends Component {
             <label>Picture</label>
             <input
               type="file"
-              name="image"
+              name="picture"
               accept="image/png, image/jpeg"
               onChange={this.handleImageChange}
               required
+            />
+          </div>
+          <div className="form-group">
+            <label>Description</label>
+            <textarea
+              className="form-control"
+              type="text"
+              name="description"
+              onChange={this.onChange}
+              value={description}
             />
           </div>
           <div className="form-group">
@@ -102,7 +115,7 @@ export class Form extends Component {
               value={owner}
             />
           </div> */}
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>Winner</label>
             <input
               className="form-control"
@@ -111,7 +124,7 @@ export class Form extends Component {
               onChange={this.onChange}
               value={winner}
             />
-          </div>
+          </div> */}
           <div className="form-group">
             <button type="submit" className="btn btn-primary">
               Submit

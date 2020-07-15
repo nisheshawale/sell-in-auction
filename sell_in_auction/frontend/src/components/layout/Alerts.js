@@ -53,6 +53,9 @@ export class Alerts extends Component {
       if (message.makebid) {
         alert.success(message.makebid);
       }
+      if (message.bidNotEnough) {
+        alert.error(message.bidNotEnough);
+      }
     }
   }
 

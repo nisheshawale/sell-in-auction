@@ -28,6 +28,7 @@ export class SpecificItems extends Component {
               <th>ID</th>
               <th>Name</th>
               <th>Image</th>
+              <th>Description</th>
               <th>Current Bid</th>
               <th>Owner</th>
               <th>Date Posted</th>
@@ -45,6 +46,7 @@ export class SpecificItems extends Component {
                 <td>
                   <a href={item.picture}>Picture</a>
                 </td>
+                <td>{item.description}</td>
                 <td>{item.current_bid}</td>
                 <td>{item.owner}</td>
                 <td>{item.date_posted}</td>
