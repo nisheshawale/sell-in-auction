@@ -63,67 +63,69 @@ export class Form extends Component {
       winner,
     } = this.state;
     return (
-      <div className="card card-body mt-4 mb-4">
-        <h2>Add Item for Auction</h2>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Name</label>
-            <input
-              className="form-control"
-              type="text"
-              name="name"
-              onChange={this.onChange}
-              value={name}
-            />
-          </div>
-          <div className="form-group">
-            <label>Picture</label>
-            <input
-              type="file"
-              name="picture"
-              accept="image/png, image/jpeg"
-              onChange={this.handleImageChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Description</label>
-            <textarea
-              className="form-control"
-              type="text"
-              name="description"
-              onChange={this.onChange}
-              value={description}
-            />
-          </div>
-          <div className="form-group">
-            <label>Initial Bid Amount</label>
-            <input
-              className="form-control"
-              type="text"
-              name="current_bid"
-              onChange={this.onChange}
-              value={current_bid}
-            />
-          </div>
-          <div className="form-group">
-            <label>Number of hours after which bidding finishes</label>
-            <input
-              className="form-control"
-              type="number"
-              min="1"
-              name="number_of_hours"
-              onChange={this.onChange}
-              value={number_of_hours}
-            />
-          </div>
+      <div className="container-fluid w-50">
+        <div className="card card-body mt-4 mb-4">
+          <h2>Add Item for Auction</h2>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label>Name</label>
+              <input
+                className="form-control"
+                type="text"
+                name="name"
+                onChange={this.onChange}
+                value={name}
+              />
+            </div>
+            <div className="form-group">
+              <label>Picture</label>
+              <input
+                type="file"
+                name="picture"
+                accept="image/png, image/jpeg"
+                onChange={this.handleImageChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Description</label>
+              <textarea
+                className="form-control"
+                type="text"
+                name="description"
+                onChange={this.onChange}
+                value={description}
+              />
+            </div>
+            <div className="form-group">
+              <label>Initial Bid Amount</label>
+              <input
+                className="form-control"
+                type="text"
+                name="current_bid"
+                onChange={this.onChange}
+                value={current_bid}
+              />
+            </div>
+            <div className="form-group">
+              <label>Number of hours after which bidding finishes</label>
+              <input
+                className="form-control"
+                type="number"
+                min="1"
+                name="number_of_hours"
+                onChange={this.onChange}
+                value={number_of_hours}
+              />
+            </div>
 
-          <div className="form-group">
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </div>
-        </form>
+            <div className="form-group">
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

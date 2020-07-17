@@ -58,11 +58,30 @@ export class Details extends Component {
         moment(currentDate, "DD/MM/YYYY HH:mm:ss")
       )
     );
+    const hour = d.days() * 24 + d.hours()
+    const minute = d.minutes()
+    const second = d.seconds()
     const timeDisplay =
-      d.days() * 24 + d.hours() + ":" + d.minutes() + ":" + d.seconds();
+      hour + ":" + minute + ":" + second;
 
-    console.log(currentDate);
-    console.log(future);
+    const buttonPart = (
+      <div className="form-group">
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </div>
+    );
+
+    const finished = (<h5 className="text-danger">Bidding time has finished.</h5>)
+
+    const time = (
+      <p className="card-text text-muted">Time remaining: {timeDisplay}</p>
+    );
+
+    let timeFlag = 1;
+    if ((hour < 0) || (minute < 0) || (second < 0)){
+      timeFlag = 0;
+    }
 
     return (
       <div className="card mb-3">
@@ -98,15 +117,14 @@ export class Details extends Component {
                     value={this.state.contact}
                   />
                 </div>
-                <div className="form-group">
+                {timeFlag ? buttonPart:finished}
+                {/* <div className="form-group">
                   <button type="submit" className="btn btn-primary">
                     Submit
                   </button>
-                </div>
+                </div> */}
               </form>
-              <p className="card-text">
-                <small className="text-muted">{timeDisplay}</small>
-              </p>
+              {timeFlag ? time: ""}
             </div>
           </div>
         </div>
