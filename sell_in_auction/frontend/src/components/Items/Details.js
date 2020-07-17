@@ -10,7 +10,7 @@ export class Details extends Component {
   state = {
     current_bid: "",
     contact: "",
-    curTime: new Date().toLocaleString(),
+    now: moment()
   };
 
   static propTypes = {
@@ -45,11 +45,18 @@ export class Details extends Component {
     });
   };
 
+  componentDidMount() {
+    this.interval = setInterval(() => this.setState({ now: moment() }), 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   render() {
     const { id } = this.props.match.params;
 
     const selectedItem = this.props.Items.find((x) => x.id.toString() === id);
-    const currentDate = moment().format("DD/MM/YYYY HH:mm:ss");
+    const currentDate = this.state.now.format("DD/MM/YYYY HH:mm:ss");
     const future = moment(selectedItem.date_posted)
       .add(selectedItem.number_of_hours, "hours")
       .format("DD/MM/YYYY HH:mm:ss");
@@ -84,7 +91,7 @@ export class Details extends Component {
     }
 
     return (
-      <div className="card mb-3">
+      <div className="card mb-3 mt-4">
         <div className="row no-gutters">
           <div className="col-md-4">
             <img src={selectedItem.picture} className="card-img" alt="..." />
@@ -118,11 +125,6 @@ export class Details extends Component {
                   />
                 </div>
                 {timeFlag ? buttonPart:finished}
-                {/* <div className="form-group">
-                  <button type="submit" className="btn btn-primary">
-                    Submit
-                  </button>
-                </div> */}
               </form>
               {timeFlag ? time: ""}
             </div>

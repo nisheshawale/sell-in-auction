@@ -12,7 +12,6 @@ export class Form extends Component {
     current_bid: "",
     number_of_hours: "",
     bid_time: "",
-    // owner: "",
     winner: "",
   };
 
@@ -37,7 +36,6 @@ export class Form extends Component {
     form_data.append("current_bid", this.state.current_bid);
     form_data.append("number_of_hours", this.state.number_of_hours);
     form_data.append("bid_time", this.state.bid_time);
-    // form_data.append("owner", this.state.owner);
     form_data.append("winner", this.state.winner);
     this.props.addItem(form_data);
     this.setState({
@@ -47,7 +45,6 @@ export class Form extends Component {
       current_bid: "",
       number_of_hours: "",
       bid_time: "",
-      // owner: "",
       winner: "",
     });
   };
@@ -112,7 +109,7 @@ export class Form extends Component {
               <input
                 className="form-control"
                 type="number"
-                min="1"
+                // min="1"
                 name="number_of_hours"
                 onChange={this.onChange}
                 value={number_of_hours}

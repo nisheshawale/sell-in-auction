@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
-// import { getItems } from "../../actions/Items";
 import { search } from '../../actions/search';
 
 export class Header extends Component {

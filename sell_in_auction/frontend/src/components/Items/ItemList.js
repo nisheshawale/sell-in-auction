@@ -9,13 +9,11 @@ export class ItemList extends Component {
     Items: PropTypes.array.isRequired,
     value: PropTypes.string.isRequired,
     getItems: PropTypes.func.isRequired,
-    // deleteItem: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
     const all = true;
     this.props.getItems(all);
-    // this.props.setSearch('');
   }
 
   render() {
@@ -38,24 +36,7 @@ export class ItemList extends Component {
                   <div className="card-body">
                     <h5 className="card-title">{item.name}</h5>
                     <p className="card-text">Current Bid: {item.current_bid}</p>
-                    {/* <form onSubmit={this.onSubmit}>
-            <div className="form-group">
-              <input
-                onChange={this.onChange}
-                className="form-control"
-                name="current_bid"
-                type="text"
-                placeholder="Make a bid"
-                value={this.state.data}
-              />
-            </div>
-            <div className="form-group">
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button>
-            </div>
-          </form> */}
-                    {/* <div ><p className="card-text">what the fuck</p></div> */}
+            
                     <Link to={`details/${item.id}`}>Details</Link>
                   </div>
                 </div>

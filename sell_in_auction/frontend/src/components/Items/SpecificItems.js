@@ -32,7 +32,7 @@ export class SpecificItems extends Component {
               <th>Current Bid</th>
               <th>Owner</th>
               <th>Date Posted</th>
-              <th>Maximum Bidding Time</th>
+              <th>Maximum Bidding Time(in hours)</th>
               <th>Winner</th>
               <th>Contact</th>
               <th />
@@ -50,7 +50,7 @@ export class SpecificItems extends Component {
                 <td>{item.current_bid}</td>
                 <td>{item.owner}</td>
                 <td>{item.date_posted}</td>
-                <td>{item.bid_time}</td>
+                <td>{item.number_of_hours}</td>
                 <td>{item.winner}</td>
                 <td>{item.contact}</td>
                 <td>

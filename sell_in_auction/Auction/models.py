@@ -10,7 +10,7 @@ class AuctionItems(models.Model):
     current_bid = models.DecimalField(max_digits=7, decimal_places=2)
     number_of_hours = models.CharField(max_length=10, blank=True, null=True)
     date_posted = models.DateTimeField(auto_now_add=True)
-    bid_time = models.TimeField(blank=True, null=True)
+    # bid_time = models.TimeField(blank=True, null=True)
     owner = models.ForeignKey(User, related_name="items", on_delete=models.CASCADE, null=True)
     winner = models.CharField(max_length=50, blank=True, null=True)
     contact = models.CharField(max_length=10, blank=True, null=True)
