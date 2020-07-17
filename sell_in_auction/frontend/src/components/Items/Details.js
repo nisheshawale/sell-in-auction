@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateItem } from "../../actions/Items";
-import { createMessage } from '../../actions/messages';
+import { createMessage } from "../../actions/messages";
 import PropTypes from "prop-types";
+
+import moment from "moment";
 
 export class Details extends Component {
   state = {
     current_bid: "",
-    contact: ""
+    contact: "",
+    curTime: new Date().toLocaleString(),
   };
 
   static propTypes = {
@@ -27,14 +30,15 @@ export class Details extends Component {
       contact: this.state.contact,
       winner: this.props.auth.user.username,
     };
-  
-    if(this.state.current_bid > selectedItem.current_bid) {
+
+    if (this.state.current_bid > selectedItem.current_bid) {
       this.props.updateItem(updatedData, ID);
+    } else {
+      this.props.createMessage({
+        bidNotEnough: "Bid made should be greater than current bid.",
+      });
     }
-    else{
-      this.props.createMessage({ bidNotEnough: "Bid made should be greater than current bid." })
-    }
-    
+
     this.setState({
       current_bid: "",
       contact: "",
@@ -45,6 +49,20 @@ export class Details extends Component {
     const { id } = this.props.match.params;
 
     const selectedItem = this.props.Items.find((x) => x.id.toString() === id);
+    const currentDate = moment().format("DD/MM/YYYY HH:mm:ss");
+    const future = moment(selectedItem.date_posted)
+      .add(selectedItem.number_of_hours, "hours")
+      .format("DD/MM/YYYY HH:mm:ss");
+    var d = moment.duration(
+      moment(future, "DD/MM/YYYY HH:mm:ss").diff(
+        moment(currentDate, "DD/MM/YYYY HH:mm:ss")
+      )
+    );
+    const timeDisplay =
+      d.days() * 24 + d.hours() + ":" + d.minutes() + ":" + d.seconds();
+
+    console.log(currentDate);
+    console.log(future);
 
     return (
       <div className="card mb-3">
@@ -55,6 +73,7 @@ export class Details extends Component {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">{selectedItem.name}</h5>
+              <p className="card-text">{selectedItem.description}</p>
               <p className="card-text">
                 Current Bid: {selectedItem.current_bid}
               </p>
@@ -86,7 +105,7 @@ export class Details extends Component {
                 </div>
               </form>
               <p className="card-text">
-                <small className="text-muted">Last updated 3 mins ago</small>
+                <small className="text-muted">{timeDisplay}</small>
               </p>
             </div>
           </div>

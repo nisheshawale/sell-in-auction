@@ -25,39 +25,41 @@ export class ItemList extends Component {
 
     return (
       <Fragment>
-        <h2>Items</h2>
+        <div className="container-fluid">
+          <h2>Items</h2>
 
-        <div className="row row-cols-1 row-cols-md-4">
-          {selectedItems.map((item) => (
-            <div className="col mb-4" key={item.id}>
-              <div className="card h-100">
-                <img src={item.picture} className="card-img-top" alt="..." />
-                <div className="card-body">
-                  <h5 className="card-title">{item.name}</h5>
-                  <p className="card-text">Current Bid: {item.current_bid}</p>
-                  {/* <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                      <input
-                        onChange={this.onChange}
-                        className="form-control"
-                        name="current_bid"
-                        type="text"
-                        placeholder="Make a bid"
-                        value={this.state.data}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <button type="submit" className="btn btn-primary">
-                        Submit
-                      </button>
-                    </div>
-                  </form> */}
-                  {/* <div ><p className="card-text">what the fuck</p></div> */}
-                  <Link to={`details/${item.id}`}>Details</Link>
+          <div className="row row-cols-1 row-cols-md-4">
+            {selectedItems.map((item) => (
+              <div className="col mb-4" key={item.id}>
+                <div className="card h-100">
+                  <img src={item.picture} className="card-img-top" alt="..." />
+                  <div className="card-body">
+                    <h5 className="card-title">{item.name}</h5>
+                    <p className="card-text">Current Bid: {item.current_bid}</p>
+                    {/* <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <input
+                onChange={this.onChange}
+                className="form-control"
+                name="current_bid"
+                type="text"
+                placeholder="Make a bid"
+                value={this.state.data}
+              />
+            </div>
+            <div className="form-group">
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </div>
+          </form> */}
+                    {/* <div ><p className="card-text">what the fuck</p></div> */}
+                    <Link to={`details/${item.id}`}>Details</Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </Fragment>
     );

@@ -10,6 +10,7 @@ export class Form extends Component {
     picture: null,
     description: "",
     current_bid: "",
+    number_of_hours: "",
     bid_time: "",
     // owner: "",
     winner: "",
@@ -34,6 +35,7 @@ export class Form extends Component {
     form_data.append("name", this.state.name);
     form_data.append("description", this.state.description);
     form_data.append("current_bid", this.state.current_bid);
+    form_data.append("number_of_hours", this.state.number_of_hours);
     form_data.append("bid_time", this.state.bid_time);
     // form_data.append("owner", this.state.owner);
     form_data.append("winner", this.state.winner);
@@ -43,6 +45,7 @@ export class Form extends Component {
       picture: null,
       description: "",
       current_bid: "",
+      number_of_hours: "",
       bid_time: "",
       // owner: "",
       winner: "",
@@ -50,7 +53,15 @@ export class Form extends Component {
   };
 
   render() {
-    const { name, picture, description, current_bid, bid_time, winner } = this.state;
+    const {
+      name,
+      picture,
+      description,
+      current_bid,
+      number_of_hours,
+      bid_time,
+      winner,
+    } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
         <h2>Add Item for Auction</h2>
@@ -86,7 +97,7 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Current Bid</label>
+            <label>Initial Bid Amount</label>
             <input
               className="form-control"
               type="text"
@@ -96,35 +107,17 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Bid Time</label>
-            <textarea
+            <label>Number of hours after which bidding finishes</label>
+            <input
               className="form-control"
-              type="text"
-              name="bid_time"
+              type="number"
+              min="1"
+              name="number_of_hours"
               onChange={this.onChange}
-              value={bid_time}
+              value={number_of_hours}
             />
           </div>
-          {/* <div className="form-group">
-            <label>Owner</label>
-            <input
-              className="form-control"
-              type="text"
-              name="owner"
-              onChange={this.onChange}
-              value={owner}
-            />
-          </div> */}
-          {/* <div className="form-group">
-            <label>Winner</label>
-            <input
-              className="form-control"
-              type="text"
-              name="winner"
-              onChange={this.onChange}
-              value={winner}
-            />
-          </div> */}
+
           <div className="form-group">
             <button type="submit" className="btn btn-primary">
               Submit

@@ -47,7 +47,7 @@ export class Header extends Component {
     );
 
     return (
-      <div className="container">
+      <div className="container-fluid">
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <button
             className="navbar-toggler"
