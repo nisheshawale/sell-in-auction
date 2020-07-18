@@ -1,5 +1,7 @@
 node_modules
 
+requirements.txt
+
 
 ### Django ###
 *.log
